@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        /* Footer */
+        footer {
+            position:absolute;
+            bottom: 0;
+            width: 100%;
+
+        }
+        /* Dark mode */
+        body.dark {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .content{
+            max-width: 1000px;
+            margin: auto;
+            height: 100%;
+            bottom-padding:50px;
+        }
+        .profilowe{
+            text-align: center;
+            padding: 15px;
+        }
+
+        .przycisk{
+            margin: auto;
+            padding-top:15px;
+            padding-right:15px;
+            padding-left: 20px;
+        }
+        .przycisk2{
+            padding-bottom:15px;
+        }
+
+        .navbar-brand{
+            padding-left:10px;
+        }
+    </style>
+
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a th:href = "@{/home}" class="navbar-brand" >Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href = "@{/profil}">Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href = "@{/apteka}">Apteka</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href = "@{/historia-zamowien}">Zamówienia</a>
+                </li>
+                <li class="nav-item" style="display:none" id="pracownicy">
+                    <a class="nav-link" th:href = "@{/pracownicy}">Pracownicy</a>
+                </li>
+                <li class="nav-item" style="display:none" id="uzytkownicy">
+                    <a class="nav-link" th:href = "@{/uzytkownicy}">Użytkownicy</a>
+                </li>
+                <li class="nav-item">
+                    <button id="dark-mode-toggle" class="btn btn-secondary">Dark mode</button>
+                </li>
+            </ul>
+        </div>
+        <div class="przycisk">
+            <div class="row">
+                <div class="col-md-6">
+                    <a  class="btn btn-primary" th:text="${uzytkownik.username}"></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+<div class="content">
+
+    <form class="row g-3" th:object="${uzytkownik}" th:action="@{/profil}" th:method="POST">
+        <div class="profilowe">
+            <a th:href = "@{/home}">
+                <img src="images/profilowe.png"  width="200" th:src="@{images/profilowe.png}"/>
+            </a>
+
+        </div>
+        <div>
+            <H5>Nazwa użytkownika:</H5>
+            <div id="d1">
+                <p1 th:text="${uzytkownik.username}"></p1>
+            </div>
+
+
+            <div id="toggle1" style="display:none">
+                <input th:field="*{username}" type="text" class="form-control" id="inputUsername" >
+            </div>
+
+
+        </div>
+        <div>
+            <H5>Hasło:</H5>
+            <div id="d2">
+                <p2 th:text="${uzytkownik.password}"></p2>
+            </div>
+
+            <div id="toggle2" style="display:none">
+                <input th:field="*{password}" type="text" class="form-control" id="inputPassword" >
+            </div>
+
+        </div>
+        <div>
+            <H5>Imię:</H5>
+            <div id="d3">
+                <p3 th:text="${uzytkownik.imie}"></p3>
+            </div>
+
+            <div id="toggle3" style="display:none">
+                <input th:field="*{imie}" type="text" class="form-control" id="inputImie" >
+            </div>
+
+        </div>
+        <div>
+            <H5>Nazwisko:</H5>
+            <div id="d4">
+                <p4 th:text="${uzytkownik.nazwisko}"></p4>
+            </div>
+
+            <div id="toggle4" style="display:none">
+                <input th:field="*{nazwisko}" type="text" class="form-control" id="inputNazwisko" >
+            </div>
+
+        </div>
+        <div>
+            <H5>E-mail:</H5>
+            <div id="d5">
+                <p5 th:text="${uzytkownik.email}"></p5>
+            </div>
+
+            <div id="toggle5" style="display:none">
+                <input th:field="*{email}" type="text" class="form-control" id="inputEmail" >
+            </div>
+
+        </div>
+        <div>
+            <H5>Wiek:</H5>
+            <div id="d6">
+                <p1 th:text="${uzytkownik.wiek}"></p1>
+            </div>
+
+            <div id="toggle6" style="display:none">
+                <input th:field="*{wiek}" type="text" class="form-control" id="inputWiek" >
+            </div>
+
+        </div>
+
+        <div>
+            <H5>Adres:</H5>
+            <div id="d10">
+                <p1 th:text="${uzytkownik.adres}"></p1>
+            </div>
+
+            <div id="toggle10" style="display:none">
+                <input th:field="*{adres}" type="text" class="form-control" id="inputAdres" >
+            </div>
+
+        </div>
+
+        <div>
+            <H5>Numer telefonu:</H5>
+            <div id="d7">
+                <p1 th:text="${uzytkownik.telefon}"></p1>
+            </div>
+
+            <div id="toggle7" style="display:none">
+                <input th:field="*{telefon}" type="text" class="form-control" id="inputTefelon" >
+            </div>
+
+        </div>
+        <div>
+            <H5>Kraj:</H5>
+            <div id="d8">
+                <p1 th:text="${uzytkownik.kraj}"></p1>
+            </div>
+
+            <div id="toggle8" style="display:none">
+                <input th:field="*{kraj}" type="text" class="form-control" id="inputKraj" >
+            </div>
+
+        </div>
+
+        <div class="przycisk">
+            <div class="row">
+                <div class="col-md-6">
+                    <a id="edytuj" class="btn btn-primary" onclick="showDiv()">Edytuj</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="przycisk2" style="display:none" id="przycisk2">
+            <div class="row">
+                <div class="col-md-6" >
+                    <button type="submit" class="btn btn-primary">Zatwierdź </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<!--
+<footer class="bg-dark py-3">
+    <div class="container">
+        <p class="text-center text-white">Copyright © Your Website</p>
+    </div>
+
+</footer>
+--->
+</body>
+</html>
+
+<script>
+    // Get the dark mode toggle button
+    let toggleButton = document.getElementById("dark-mode-toggle");
+
+    // Add an event listener to the button
+    toggleButton.addEventListener("click", function() {
+        // Get the body element
+        let body = document.body;
+
+        // Toggle the "dark" class on the body
+        body.classList.toggle("dark");
+
+        // Change the button text
+        if (body.classList.contains("dark")) {
+            toggleButton.innerHTML = "Light mode";
+        } else {
+            toggleButton.innerHTML = "Dark mode";
+        }
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-R0IHgw0ZGpjZi3M4Szf3PnGmj5mX9DV5r3q5f5Zn2/ZKj7lRvn8lE7VU1N6u9L6" crossorigin="anonymous"></script>
+<script>
+    // Get the dark mode toggle button
+    let toggleButton = document.getElementById("dark-mode-toggle");
+
+    // Add an event listener to the button
+    toggleButton.addEventListener("click", function() {
+        // Get the body element
+        let body = document.body;
+
+        // Toggle the "dark" class on the body
+        body.classList.toggle("dark");
+
+        // Change the button text
+        if (body.classList.contains("dark")) {
+            toggleButton.innerHTML = "Light mode";
+        } else {
+            toggleButton.innerHTML = "Dark mode";
+        }
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-R0IHgw0ZGpjZi3M4Szf3PnGmj5mX9DV5r3q5f5Zn2/ZKj7lRvn8lE7VU1N6u9L6" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+        function showDiv(){
+        document.getElementById('toggle1').style.display = 'block';
+        document.getElementById('toggle2').style.display = 'block';
+        document.getElementById('toggle3').style.display = 'block';
+        document.getElementById('toggle4').style.display = 'block';
+        document.getElementById('toggle5').style.display = 'block';
+        document.getElementById('toggle6').style.display = 'block';
+        document.getElementById('toggle7').style.display = 'block';
+        document.getElementById('toggle8').style.display = 'block';
+        document.getElementById('toggle10').style.display = 'block';
+        document.getElementById('przycisk2').style.display = 'block';
+        document.getElementById('d1').style.display = 'none';
+        document.getElementById('d2').style.display = 'none';
+        document.getElementById('d3').style.display = 'none';
+        document.getElementById('d4').style.display = 'none';
+        document.getElementById('d5').style.display = 'none';
+        document.getElementById('d6').style.display = 'none';
+        document.getElementById('d7').style.display = 'none';
+        document.getElementById('d8').style.display = 'none';
+        document.getElementById('d10').style.display = 'none';
+        document.getElementById('edytuj').style.display = 'none';
+        }
+    </script>
+<script th:inline="javascript">
+
+        function showDiv2(){
+
+            var id_pracownika = [[${id_pracownika}]];
+
+            if(id_pracownika > 0){
+                document.getElementById('pracownicy').style.display = 'block';
+                document.getElementById('uzytkownicy').style.display = 'block';
+            }
+        }
+        window.onload = showDiv2();
+
+    </script>

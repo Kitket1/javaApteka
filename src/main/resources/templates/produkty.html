@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        /* Footer */
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        /* Dark mode */
+        body.dark{
+            background-color: #333;
+            color: #fff;
+        }
+        body.dark .card-body{
+            background-color: #333;
+            color: #fff;
+        }
+
+        .przycisk{
+            margin: auto;
+            padding-top:15px;
+            padding-right:15px;
+        }
+        .navbar-brand{
+            padding-left:10px;
+        }
+
+        .ilosc{
+            width: 150px;
+            padding_top:px;
+        }
+        .col-12{
+            padding-top:15px;
+        }
+
+
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" th:href = "@{/home}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href = "@{/profil}">Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href = "@{/apteka}">Apteka</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href = "@{/historia-zamownien}">Zamówienia</a>
+                </li>
+                <li class="nav-item" style="display:none" id="pracownicy">
+                    <a class="nav-link" th:href = "@{/pracownicy}">Pracownicy</a>
+                </li>
+                <li class="nav-item" style="display:none" id="uzytkownicy">
+                    <a class="nav-link" th:href = "@{/uzytkownicy}">Użytkownicy</a>
+                </li>
+                <li class="nav-item">
+                    <button id="dark-mode-toggle" class="btn btn-secondary">Dark mode</button>
+                </li>
+            </ul>
+        </div>
+        <div class="przycisk">
+            <div class="row">
+                <div class="col-md-6">
+                    <a th:href = "@{/profil}" class="btn btn-primary" th:text="${nazwaUzytkownika}"></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</header>
+<div class="container-fluid">
+
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-grey sidebar">
+            <form th:object="${magazyn}" th:action="@{/produkty}" th:method="POST">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <div class="ilosc">
+                            <p>APAP Caps</p>
+                            <input th:field="*{l1}" type="text" class="form-control">
+                        </div>
+
+                    </li>
+                    <li class="nav-item">
+                        <div class="ilosc">
+                            <p>Cholinex</p>
+                            <input th:field="*{l2}" type="text" class="form-control">
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="ilosc">
+                            <p>ASPIRIN C FORTE</p>
+                            <input th:field="*{l3}" type="text" class="form-control">
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="ilosc">
+                            <p>Buscopan Forte</p>
+                            <input th:field="*{l4}" type="text" class="form-control">
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="ilosc">
+                            <p>Rutioscorbin</p>
+                            <input th:field="*{l5}" type="text" class="form-control">
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="ilosc">
+                            <p>Ketonal Active</p>
+                            <input th:field="*{l6}" type="text" class="form-control">
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="ilosc">
+                            <p>ALTACET</p>
+                            <input th:field="*{l7}" type="text" class="form-control">
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="ilosc">
+                            <p>Stoperan</p>
+                            <input th:field="*{l8}" type="text" class="form-control">
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="ilosc">
+                            <p>ESPUMISAN</p>
+                            <input th:field="*{l9}" type="text" class="form-control">
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">Zakup</button>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            </form>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 justify-content-center">
+            <div class="pt-3 pb-2 mb-3 border-bottom">
+                <h1>Produkty</h1>
+            </div>
+
+            <div class="content">
+
+                <div class="row row-cols-1 row-cols-md-3 g-4" >
+                    <div class="col" th:each="produkt : ${produkty}">
+                        <div class="card h-100" >
+                            <img th:src="${produkt.img}" height="300" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${produkt.nazwa}"></h5>
+
+                                <p class="card-text" th:text="${produkt.opis_krotki}"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="text-center">
+            </div>
+        </main>
+    </div>
+
+
+</div>
+
+<!---
+<footer class="bg-dark py-3">
+    <div class="container">
+        <p class="text-center text-white">Copyright © Your Website</p>
+    </div>
+
+</footer>
+--->
+
+<script>
+    // Get the dark mode toggle button
+    let toggleButton = document.getElementById("dark-mode-toggle");
+
+    // Add an event listener to the button
+    toggleButton.addEventListener("click", function() {
+        // Get the body element
+        let body = document.body;
+
+        // Toggle the "dark" class on the body
+        body.classList.toggle("dark");
+
+        // Change the button text
+        if (body.classList.contains("dark")) {
+            toggleButton.innerHTML = "Light mode";
+        } else {
+            toggleButton.innerHTML = "Dark mode";
+        }
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-R0IHgw0ZGpjZi3M4Szf3PnGmj5mX9DV5r3q5f5Zn2/ZKj7lRvn8lE7VU1N6u9L6" crossorigin="anonymous"></script>
+<script th:inline="javascript">
+
+        function showDiv(){
+
+            var id_pracownika = [[${id_pracownika}]];
+
+            if(id_pracownika != 0){
+                document.getElementById('pracownicy').style.display = 'block';
+                document.getElementById('uzytkownicy').style.display = 'block';
+            }
+        }
+        window.onload = showDiv();
+
+    </script>

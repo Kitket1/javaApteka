@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <style>
+       .div{
+            padding-top:200px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .button{
+        padding-top: 15px;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div class="div">
+        <form th:object="${apteka}" th:action="@{/apteka-wybor}" th:method="POST" >
+            <div class="col-md-6">
+                <label for="inputState" class="form-label">Wybierz Apteke</label>
+                <select id="inputState" class="form-select" th:field="*{nazwa}">
+                    <option value="0">...</option>
+                    <option th:each="aptekaa : ${apteki}" th:value="${aptekaa.nazwa}" th:text="${aptekaa.nazwa}"  ></option>
+
+                </select>
+            </div>
+            <div class="button">
+                <button type="submit" class="btn btn-primary">Zatwierdź</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
