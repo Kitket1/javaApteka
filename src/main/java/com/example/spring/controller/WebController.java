@@ -152,7 +152,7 @@ public class WebController {
         List<Apteka> listaAptek = Arrays.asList(apteki);
 
         for(int i=0;i<listaAptek.size();i++){
-            if(nazwa.equals(listaAptek.get(i))){
+            if(nazwa.equals(listaAptek.get(i).getNazwa())){
                 wybranaApteka = listaAptek.get(i);
                 break;
             }
